@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+		<script type="text/javascript" charset="utf-8" src="cordova.js">
+        <title>Tiempo actual</title>
+		<script type="text/javascript" charset="utf-8">
+function actualizaReloj() {
+document.addEventListener("deviceready",onDeviceReady,false);
+function onDeviceReady(){
+	fecha_hora();
+}
+function fecha_hora(){
+/* Capturamos la Hora, los minutos y los segundos */
+marcacion = new Date()
+
+/* Capturamos la Hora */
+Hora = marcacion.getHours()
+h = marcacion.getHours()
+/* Capturamos los Minutos */
+Minutos = marcacion.getMinutes()
+m = marcacion.getMinutes()
+/* Capturamos los Segundos */
+Segundos = marcacion.getSeconds()
+s = marcacion.getSeconds()
+/*variable para el apóstrofe de am o pm*/
+dn = "a.m"
+if (Hora > 12) {
+dn = "p.m"
+Hora = Hora - 12
+}
+if(h>12){
+h = h-12
+}
+if (Hora == 0)
+Hora = 12
+if(h==0)
+h=12
+/* Si la Hora, los Minutos o los Segundos son Menores o igual a 9, le añadimos un 0 */
+if (Hora <= 9) Hora = "0" + Hora
+if (h <= 9) h = "0" + h
+if (Minutos <= 9) Minutos = "0" + Minutos
+if (m <= 9) m= "0" + m
+if (Segundos <= 9) Segundos = "0" + Segundos
+if (s <= 9) s = "0" + s
+
+/* Termina el Script del Reloj */
+
+/*Script de la Fecha */
+
+var Dia = new Array("Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
+var Mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", 
+"Octubre", "Noviembre", "Diciembre");
+var Hoy = new Date();
+var Anio = Hoy.getFullYear();
+var Fecha = "Fecha:"+Dia[Hoy.getDay()] + ", " + Hoy.getDate() + " de " + Mes[Hoy.getMonth()] + " de " + Anio + ". ";
+
+/* Termina el script de la Fecha */
+
+/* Creamos 2 variables para darle formato a nuestro Script */
+var Script, Total
+
+/* En Reloj le indicamos la Hora, los Minutos y los Segundos */
+Script = "Ingresaste en "+Fecha +"<br>"+"en un horario de:"+h+":"+m+":"+s+" "+dn+ "<br>"+"Hora:"+Hora + ":" + Minutos + ":" + Segundos + " " + dn
+
+/* En total Finalizamos el Reloj uniendo las variables */
+Total = Script
+
+/* Capturamos una celda para mostrar el Reloj */
+document.getElementById('Fecha_Reloj').innerHTML = Total
+
+/* Indicamos que nos refresque el Reloj cada 1 segundo */
+setTimeout("actualizaReloj()", 1000)
+}
+}
+</script>
+<style>
+	body{
+		background-color:green;
+	}
+</style>
+    </head>
+    <body onload="actualizaReloj()">
+        <div id="Fecha_Reloj" style="background-color:black;font-size:15px; color:white;"></div>
+    </body>
+</html>
