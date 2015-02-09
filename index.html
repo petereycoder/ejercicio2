@@ -29,6 +29,15 @@
         <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
 		<script type="text/javascript" charset="utf-8" src="cordova.js">
         <title>Tiempo actual</title>
+		
+<style>
+	body{
+		background-color:green;
+	}
+</style>
+    </head>
+    <body onload="actualizaReloj()">
+        <div id="Fecha_Reloj" style="background-color:black;font-size:15px; color:white;"></div>
 		<script type="text/javascript" charset="utf-8">
 function actualizaReloj() {
 document.addEventListener("deviceready",onDeviceReady,false);
@@ -99,13 +108,5 @@ setTimeout("actualizaReloj()", 1000)
 }
 }
 </script>
-<style>
-	body{
-		background-color:green;
-	}
-</style>
-    </head>
-    <body onload="actualizaReloj()">
-        <div id="Fecha_Reloj" style="background-color:black;font-size:15px; color:white;"></div>
     </body>
 </html>
